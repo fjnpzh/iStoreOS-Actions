@@ -4,17 +4,20 @@ on:
   workflow_dispatch:
     inputs:
       openwrt_board:
-        description: "请选择设备型号"
+        description: "1、请选择设备型号"
         required: true
-        default: "a311d-oes_s905d_wxy-oect_jp-tvbox_s922x-oes-plus_fine3399_sv-33a6x_dg3399_dg-tn3568_smart-am40_smart-am60_sw799_king3399_panther-x2_firefly-rk3399_s905l3a"
+        default: "s905d_s905x3_s912_s922x-ct2000"
         type: choice
         options:
-          - a311d-oes_s905d_wxy-oect_jp-tvbox_s922x-oes-plus_fine3399_sv-33a6x_dg3399_dg-tn3568_smart-am40_smart-am60_sw799_king3399_panther-x2_firefly-rk3399_s905l3a
+          - a311d-oes_s922x-oes-plus_wxy-oect
+          - nsy-g16-plus_nsy-g68-plus_bdy-g18-pro
+          - s905d_s905x3_s912_s922x-ct2000
           - a311d
           - a311d-oes
           - alark35-3500
           - anas3035
           - aio-3399b
+          - bdy-g18-pro
           - beikeyun
           - chainedbox
           - crrc
@@ -29,7 +32,7 @@ on:
           - fine3399
           - firefly-rk3399
           - fmx1-pro
-          - jp-tvbox
+          - gzpeite-p01
           - h28k
           - h66k
           - h68k
@@ -40,6 +43,7 @@ on:
           - hs530r
           - hugsun-x99
           - ipc-r
+          - jp-tvbox
           - king3399
           - kylin3399
           - lckfb-tspi
@@ -49,6 +53,8 @@ on:
           - nanopc-t6
           - nanopi-r5c
           - nanopi-r5s
+          - nsy-g16-plus
+          - nsy-g68-plus
           - orangepi-5-plus
           - orangepi-5b
           - panther-x2
@@ -169,7 +175,7 @@ on:
           - zk-r39a
           - zysj
       openwrt_kernel:
-        description: "请选择内核版本"
+        description: "2、请选择内核版本"
         required: true
         default: "6.6.y"
         type: choice
@@ -181,13 +187,13 @@ on:
           - 6.6.115
           - 6.12.47
       auto_kernel:
-        description: "自动使用最新内核"
+        description: "自动使用最新内核-未匹配则自动"
         required: false
         default: true
         type: boolean
 
 env:
-  VERSION: 24.10.4
+  VERSION: 24.10.5
 
 jobs:
   build:
@@ -245,13 +251,13 @@ jobs:
         with:
           tag_name: iStoreOS-${{ env.VERSION }}-SNAPSHOT-dhcp
           body: |
-            🔄 版本： iStoreOS-${{ env.VERSION }}-SNAPSHOT（源码编译，追新版）
+            🔄 版本： iStoreOS-${{ env.VERSION }}-SNAPSHOT（源码编译后构建，插件集成适度精简）
             
             📂 来源： https://github.com/istoreos/istoreos
             
             🧠 内核： Please Login to iStoreOS → System → Amlogic Service → Replace the Kernel
             
-            🧩 集成： 包含了基础系统组件、驱动、网络工具、容器支持、LuCI界面及插件等。与官方集成列表基本一致
+            🧩 集成： 包含了基础系统组件、驱动、网络工具、容器支持、LuCI界面及插件等
             
             👤 用户名： root
             
